@@ -1,0 +1,66 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "history_visible": true,
+      "authorship_tag": "ABX9TyMtuMYbhuUQo9oiECkRWlYg",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/M-KruthikaReddy/CSA6301-threat-intelligence-and-network-security/blob/main/Lab-8\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 16,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5rINHfuEH3GL",
+        "outputId": "261b02e0-e7ed-4775-e791-52fcbb087317"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Attempting dictionary attack on stolen hash...\n",
+            "Password cracked: 'letmein'\n"
+          ]
+        }
+      ],
+      "source": [
+        "import hashlib\n",
+        "# Simulate a stolen password hash (a real system would never expose this!)\n",
+        "stolen_hash = hashlib.sha256(\"letmein\".encode()).hexdigest()\n",
+        "wordlist = [\"123456\", \"password\", \"admin\", \"letmein\", \"qwerty\"]\n",
+        "print(\"Attempting dictionary attack on stolen hash...\")\n",
+        "for word in wordlist:\n",
+        "    guess_hash = hashlib.sha256(word.encode()).hexdigest()\n",
+        "    if guess_hash == stolen_hash:\n",
+        "        print(f\"Password cracked: '{word}'\")\n",
+        "        break\n",
+        "else:\n",
+        "    print(\"Password not found in wordlist.\")"
+      ]
+    }
+  ]
+}
